@@ -16,12 +16,16 @@ class Net(torch.nn.Module):
     output = self.sigmoid(output)
     return output
 
-modelo = Net()
 
-modelo.load_state_dict(torch.load('./modelo/iris.dat'))
-modelo.eval()
 
 def predict(larg_sepala, comp_sepala, larg_petala, comp_petala, modelo):
+
+    input_size = entrada.size()
+
+    modelo = Net(input_size,hidden_size=10)
+    modelo.load_state_dict(torch.load('./modelo/iris.dat'))
+    modelo.eval()
+
     dados = [larg_sepala, comp_sepala, larg_petala, comp_petala]
     entrada = torch.FloatTensor(dados)
 
